@@ -8,10 +8,5 @@ namespace mvcMovie.Models
         public string Name { get; set; }
 
         public ICollection<Film> Films { get; set; }
-
-        public static implicit operator int(Category v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

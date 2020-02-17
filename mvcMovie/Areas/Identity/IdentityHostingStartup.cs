@@ -1,11 +1,9 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using mvcMovie.Data;
+using mvcMovie.Areas.Identity.Data;
 using mvcMovie.Models;
 
 [assembly: HostingStartup(typeof(mvcMovie.Areas.Identity.IdentityHostingStartup))]
@@ -21,7 +19,7 @@ namespace mvcMovie.Areas.Identity
                         context.Configuration.GetConnectionString("mvcMovieContext")));
 
                 services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<IdentityContext>();
+                    .AddEntityFrameworkStores<mvcMovieContext>();
             });
         }
     }

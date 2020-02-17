@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using mvcMovie.Areas.Identity.Data;
 using mvcMovie.Models;
 
 namespace mvcMovie
@@ -21,10 +22,10 @@ namespace mvcMovie
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("mvcMovieContext");
-            services.AddDbContext<mvcMovieContext>(options => options.UseSqlServer(connection));
-            services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<mvcMovieContext>();
+            //var connection = Configuration.GetConnectionString("mvcMovieContext");
+            //services.AddDbContext<mvcMovieContext>(options => options.UseSqlServer(connection));
+            //services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<mvcMovieContext>();
 
             services.AddControllersWithViews();
         }

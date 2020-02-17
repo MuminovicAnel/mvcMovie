@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace mvcMovie.Models
 {
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
         public int ID { get; set; }
         public string Firstname { get; set; }
@@ -14,6 +14,14 @@ namespace mvcMovie.Models
         public string Email { get; set; }
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return Firstname + " " + Lastname;
+            }
+        }
 
         public virtual ICollection<FilmUser> FilmUsers { get; set; }
     }

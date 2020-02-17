@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using mvcMovie.Areas.Identity.Data
 
-@inject SignInManager<mvcMovieUser> SignInManager
-@inject UserManager<mvcMovieUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
