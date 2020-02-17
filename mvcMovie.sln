@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mvcMovie", "mvcMovie\mvcMovie.csproj", "{892759C9-C282-4FDA-93E4-AD0E7CAE11A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BC5B84B-292A-4FFA-B7CC-B435B195121C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{892759C9-C282-4FDA-93E4-AD0E7CAE11A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{892759C9-C282-4FDA-93E4-AD0E7CAE11A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{892759C9-C282-4FDA-93E4-AD0E7CAE11A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{892759C9-C282-4FDA-93E4-AD0E7CAE11A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1ED950D0-B567-4791-B046-4DC446AE4DE1}
+	EndGlobalSection
+EndGlobal
