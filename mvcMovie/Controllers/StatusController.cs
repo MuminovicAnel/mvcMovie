@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using mvcMovie.Areas.Identity.Data;
 using mvcMovie.Models;
 using System.Linq;
 using System.Threading.Tasks;

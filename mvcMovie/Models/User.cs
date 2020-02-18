@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
 
 namespace mvcMovie.Models
 {
-    public class User : IdentityUser<int>
+    public class User : BaseEntity
     {
-        public int ID { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Pseudo { get; set; }

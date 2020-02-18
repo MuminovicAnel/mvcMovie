@@ -37,21 +37,21 @@
                 @Html.DisplayFor(modelItem => item.Rating)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.ID)
+                @Html.DisplayFor(modelItem => item.User.FullName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Film.ID)
+                @Html.DisplayFor(modelItem => item.Film.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.ID)
+                @Html.DisplayFor(modelItem => item.Status.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ID)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { user_id=item.User.ID, film_id=item.Film.ID, status_id=item.Status.ID }) |
+                @Html.ActionLink("Details", "Details", new { user_id=item.User.ID, film_id=item.Film.ID, status_id=item.Status.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { user_id=item.User.ID, film_id=item.Film.ID, status_id=item.Status.ID })
             </td>
         </tr>
 }
