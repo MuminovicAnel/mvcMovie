@@ -15,6 +15,7 @@ namespace mvcMovie
         public int UserId { get; set; }
         [Column("movie_id")]
         public int MovieId { get; set; }
+        [DataType(DataType.MultilineText)]
         [Column("comment")]
         [StringLength(5000)]
         public string Comment { get; set; }

@@ -10,45 +10,46 @@
     <h4>Movies</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" id="title">
             @Html.DisplayFor(model => model.Title)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Release)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" id="release">
             @Html.DisplayFor(model => model.Release)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Picture)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" id="picture">
             @Html.DisplayFor(model => model.Picture)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Synopsis)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" id="synopsis">
             @Html.DisplayFor(model => model.Synopsis)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" id="category">
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10" id="rating">
             @Html.DisplayFor(model => model.Rating.Name)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @Html.ActionLink("Create", "Create", null, new { id="myLink"})
     <a asp-action="Index">Back to List</a>
 </div>

@@ -20,6 +20,8 @@ namespace mvcMovie
         [Column("title")]
         [StringLength(50)]
         public string Title { get; set; }
+
+        [DataType(DataType.Date)]
         [Column("release", TypeName = "date")]
         public DateTime? Release { get; set; }
         [Column("picture")]

@@ -48,8 +48,8 @@ namespace mvcMovie.Controllers
         // GET: UserLikeMovies/Create
         public IActionResult Create()
         {
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname");
+            ViewData["Movie"] = new SelectList(_context.Movies, "Id", "Title");
+            ViewData["User"] = new SelectList(_context.Users, "Id", "Firstname");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace mvcMovie.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
+            ViewData["Movie"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
+            ViewData["User"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
             return View(userLikeMovie);
         }
 
@@ -84,8 +84,8 @@ namespace mvcMovie.Controllers
             {
                 return NotFound();
             }
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
+            ViewData["Movie"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
+            ViewData["User"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
             return View(userLikeMovie);
         }
 
@@ -121,8 +121,8 @@ namespace mvcMovie.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
+            ViewData["Movie"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
+            ViewData["User"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
             return View(userLikeMovie);
         }
 
