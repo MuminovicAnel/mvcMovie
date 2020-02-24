@@ -9,7 +9,7 @@ using mvcMovie.Models;
 
 namespace mvcMovie.Migrations
 {
-    [DbContext(typeof(mvcMovieContext))]
+    [DbContext(typeof(moviesContext))]
     [Migration("20200217233001_InitialCreate")]
     partial class InitialCreate
     {

@@ -9,22 +9,23 @@ using mvcMovie;
 
 namespace mvcMovie.Controllers
 {
-    public class CategoriesController : Controller
+    public class UserLikeMoviesController : Controller
     {
         private readonly moviesContext _context;
 
-        public CategoriesController(moviesContext context)
+        public UserLikeMoviesController(moviesContext context)
         {
             _context = context;
         }
 
-        // GET: Categories
+        // GET: UserLikeMovies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Categories.ToListAsync());
+            var moviesContext = _context.UserLikeMovie.Include(u => u.Movie).Include(u => u.User);
+            return View(await moviesContext.ToListAsync());
         }
 
-        // GET: Categories/Details/5
+        // GET: UserLikeMovies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +33,45 @@ namespace mvcMovie.Controllers
                 return NotFound();
             }
 
-            var categories = await _context.Categories
+            var userLikeMovie = await _context.UserLikeMovie
+                .Include(u => u.Movie)
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (categories == null)
+            if (userLikeMovie == null)
             {
                 return NotFound();
             }
 
-            return View(categories);
+            return View(userLikeMovie);
         }
 
-        // GET: Categories/Create
+        // GET: UserLikeMovies/Create
         public IActionResult Create()
         {
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname");
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: UserLikeMovies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Categories categories)
+        public async Task<IActionResult> Create([Bind("Id,UserId,MovieId,Comment,Stars,HasSeen")] UserLikeMovie userLikeMovie)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(categories);
+                _context.Add(userLikeMovie);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(categories);
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
+            return View(userLikeMovie);
         }
 
-        // GET: Categories/Edit/5
+        // GET: UserLikeMovies/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +79,24 @@ namespace mvcMovie.Controllers
                 return NotFound();
             }
 
-            var categories = await _context.Categories.FindAsync(id);
-            if (categories == null)
+            var userLikeMovie = await _context.UserLikeMovie.FindAsync(id);
+            if (userLikeMovie == null)
             {
                 return NotFound();
             }
-            return View(categories);
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
+            return View(userLikeMovie);
         }
 
-        // POST: Categories/Edit/5
+        // POST: UserLikeMovies/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Categories categories)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,MovieId,Comment,Stars,HasSeen")] UserLikeMovie userLikeMovie)
         {
-            if (id != categories.Id)
+            if (id != userLikeMovie.Id)
             {
                 return NotFound();
             }
@@ -96,12 +105,12 @@ namespace mvcMovie.Controllers
             {
                 try
                 {
-                    _context.Update(categories);
+                    _context.Update(userLikeMovie);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoriesExists(categories.Id))
+                    if (!UserLikeMovieExists(userLikeMovie.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +121,12 @@ namespace mvcMovie.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(categories);
+            ViewData["MovieId"] = new SelectList(_context.Movies, "Id", "Title", userLikeMovie.MovieId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Firstname", userLikeMovie.UserId);
+            return View(userLikeMovie);
         }
 
-        // GET: Categories/Delete/5
+        // GET: UserLikeMovies/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +134,32 @@ namespace mvcMovie.Controllers
                 return NotFound();
             }
 
-            var categories = await _context.Categories
+            var userLikeMovie = await _context.UserLikeMovie
+                .Include(u => u.Movie)
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (categories == null)
+            if (userLikeMovie == null)
             {
                 return NotFound();
             }
 
-            return View(categories);
+            return View(userLikeMovie);
         }
 
-        // POST: Categories/Delete/5
+        // POST: UserLikeMovies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var categories = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(categories);
+            var userLikeMovie = await _context.UserLikeMovie.FindAsync(id);
+            _context.UserLikeMovie.Remove(userLikeMovie);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoriesExists(int id)
+        private bool UserLikeMovieExists(int id)
         {
-            return _context.Categories.Any(e => e.Id == id);
+            return _context.UserLikeMovie.Any(e => e.Id == id);
         }
     }
 }

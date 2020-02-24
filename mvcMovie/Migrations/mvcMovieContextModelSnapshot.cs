@@ -8,7 +8,7 @@ using mvcMovie.Models;
 
 namespace mvcMovie.Migrations
 {
-    [DbContext(typeof(mvcMovieContext))]
+    [DbContext(typeof(moviesContext))]
     partial class mvcMovieContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

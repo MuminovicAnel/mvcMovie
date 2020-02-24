@@ -21,7 +21,7 @@ namespace mvcMovie
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = Configuration.GetConnectionString("mvcMovieContext");
-            services.AddDbContext<mvcMovieContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<moviesContext>(options => options.UseSqlServer(connection));
             //services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<mvcMovieContext>();
 
