@@ -40,6 +40,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="RatingId" class="control-label"></label>
+                @*<input asp-for="RatingId" class="form-control" type="radio" value="ViewBag.RatingId" asp-items="ViewBag.RatingId" /> @ViewBag.RatingId*@
                 <select asp-for="RatingId" class="form-control" asp-items="ViewBag.RatingId"></select>
                 <span asp-validation-for="RatingId" class="text-danger"></span>
             </div>

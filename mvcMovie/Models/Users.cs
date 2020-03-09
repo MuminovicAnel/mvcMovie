@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,6 +25,8 @@ namespace mvcMovie
         public string Lastname { get; set; }
         [Column("isAdmin")]
         public byte? IsAdmin { get; set; }
+
+        public string getFullName => $"{Firstname} {Lastname}, ";
 
         [InverseProperty("User")]
         public virtual ICollection<UserLikeMovie> UserLikeMovie { get; set; }

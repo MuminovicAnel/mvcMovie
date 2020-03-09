@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="js\site.js" />
+    <Content Include="js\site.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -22,6 +27,14 @@
     <PackageReference Include="SimpleHashing.Net" Version="2.0.1" />
     <PackageReference Include="T4Scaffolding.Core" Version="1.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy /E /I /Y $(ProjectDir)assets $(ProjectDir)wwwroot\assets" />
+  </Target>
 
 
 

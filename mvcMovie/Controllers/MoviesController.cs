@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using mvcMovie;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace mvcMovie.Controllers
 {
@@ -21,7 +18,8 @@ namespace mvcMovie.Controllers
         // GET: Movies
         public async Task<IActionResult> Index()
         {
-            var moviesContext = _context.Movies.Include(m => m.Category).Include(m => m.Rating);
+            var moviesContext = _context.Movies.Include(m => m.Category).Include(m => m.Rating).Include(m => m.UserLikeMovie).ThenInclude(m => m.User);
+            ViewData["Users"] = new SelectList(_context.Movies, "Id", "Firstname", moviesContext);
             return View(await moviesContext.ToListAsync());
         }
 
@@ -42,6 +40,8 @@ namespace mvcMovie.Controllers
                 return NotFound();
             }
 
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", movies.CategoryId);
+            ViewData["RatingId"] = new SelectList(_context.Ratings, "Id", "Name", movies.RatingId);
             return View(movies);
         }
 
@@ -52,6 +52,11 @@ namespace mvcMovie.Controllers
             ViewData["RatingId"] = new SelectList(_context.Ratings, "Id", "Name");
             return View();
         }
+
+        [TempData]
+        public string Message { get; set; }
+        [BindProperty]
+        public Movies Movie { get; set; }
 
         // POST: Movies/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -64,6 +69,7 @@ namespace mvcMovie.Controllers
             {
                 _context.Add(movies);
                 await _context.SaveChangesAsync();
+                Message = $"Movie {Movie.Title} added";
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", movies.CategoryId);
