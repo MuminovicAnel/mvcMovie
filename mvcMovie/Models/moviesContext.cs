@@ -19,6 +19,7 @@ namespace mvcMovie
         public virtual DbSet<UserLikeMovie> UserLikeMovie { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
         }
@@ -100,6 +101,7 @@ namespace mvcMovie
 
                 entity.Property(e => e.Lastname).IsUnicode(false);
             });
+
 
             OnModelCreatingPartial(modelBuilder);
         }

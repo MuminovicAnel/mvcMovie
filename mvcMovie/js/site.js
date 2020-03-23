@@ -27,4 +27,9 @@ $(document).ready(function () {
         $("#details_movies").css("display", "none")
         $("#delete_movies").css("display", "block")
     })
+
+    $("#categoryId").change(function (e) {
+        e.preventDefault();
+        $("#formCategorySubmit").submit();
+    })
 });

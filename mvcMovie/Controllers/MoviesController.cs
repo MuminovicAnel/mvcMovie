@@ -16,10 +16,17 @@ namespace mvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int categoryId)
         {
-            var moviesContext = _context.Movies.Include(m => m.Category).Include(m => m.Rating).Include(m => m.UserLikeMovie).ThenInclude(m => m.User);
+            var moviesContext = _context.Movies.Include(m => m.Category).Include(m => m.Rating).Include(m => m.UserLikeMovie).ThenInclude(m => m.User).Select(t => t);
             ViewData["Users"] = new SelectList(_context.Movies, "Id", "Firstname", moviesContext);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", categoryId);
+
+            if (categoryId != 0)
+            {
+                moviesContext = moviesContext.Where(s => s.Category.Id == categoryId);
+            }
+
             return View(await moviesContext.ToListAsync());
         }
 
